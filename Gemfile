@@ -45,6 +45,16 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem 'rubocop-rails-omakase', require: false
+
+  gem 'rubocop', '~> 1.60'
+
+  gem 'flay', '~> 2.13'
+
+  gem 'factory_bot_rails', '~> 6.4'
+end
+
+group :test do
+  gem 'rspec-rails', '~> 6.1'
 end
 
 group :development do
@@ -62,8 +72,10 @@ group :development do
 end
 
 gem 'devise', '~> 4.9'
-gem 'flay', '~> 2.13'
 gem 'omniauth', '~> 2.1'
 gem 'omniauth-google-oauth2', '~> 1.1'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
-gem 'rubocop', '~> 1.60'
+
+gem 'httparty', '~> 0.21.0'
+gem 'openai', '~> 0.3.0'
+gem 'view_component', '~> 3.11'

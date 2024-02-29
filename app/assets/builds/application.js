@@ -8311,8 +8311,78 @@ var hello_controller_default = class extends Controller {
   }
 };
 
+// node_modules/el-transition/index.js
+async function enter(element, transitionName = null) {
+  element.classList.remove("hidden");
+  await transition("enter", element, transitionName);
+}
+async function leave(element, transitionName = null) {
+  await transition("leave", element, transitionName);
+  element.classList.add("hidden");
+}
+async function toggle(element, transitionName = null) {
+  if (element.classList.contains("hidden")) {
+    await enter(element, transitionName);
+  } else {
+    await leave(element, transitionName);
+  }
+}
+async function transition(direction, element, animation) {
+  const dataset = element.dataset;
+  const animationClass = animation ? `${animation}-${direction}` : direction;
+  let transition2 = `transition${direction.charAt(0).toUpperCase() + direction.slice(1)}`;
+  const genesis = dataset[transition2] ? dataset[transition2].split(" ") : [animationClass];
+  const start2 = dataset[`${transition2}Start`] ? dataset[`${transition2}Start`].split(" ") : [`${animationClass}-start`];
+  const end = dataset[`${transition2}End`] ? dataset[`${transition2}End`].split(" ") : [`${animationClass}-end`];
+  addClasses(element, genesis);
+  addClasses(element, start2);
+  await nextFrame();
+  removeClasses(element, start2);
+  addClasses(element, end);
+  await afterTransition(element);
+  removeClasses(element, end);
+  removeClasses(element, genesis);
+}
+function addClasses(element, classes) {
+  element.classList.add(...classes);
+}
+function removeClasses(element, classes) {
+  element.classList.remove(...classes);
+}
+function nextFrame() {
+  return new Promise((resolve) => {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(resolve);
+    });
+  });
+}
+function afterTransition(element) {
+  return new Promise((resolve) => {
+    const computedDuration = getComputedStyle(element).transitionDuration.split(",")[0];
+    const duration = Number(computedDuration.replace("s", "")) * 1e3;
+    setTimeout(() => {
+      resolve();
+    }, duration);
+  });
+}
+
+// app/javascript/controllers/menu_controller.js
+var menu_controller_default = class extends Controller {
+  static targets = ["mobileMenu", "desktopMenu"];
+  connect() {
+    console.log("menu controller connected");
+  }
+  toggleDesktopMenu() {
+    toggle(this.desktopMenuTarget);
+  }
+  toggleMobileMenu() {
+    toggle(this.mobileMenuTarget);
+  }
+};
+
 // app/javascript/controllers/index.js
 application.register("hello", hello_controller_default);
+application.register("menu", menu_controller_default);
 /*! Bundled license information:
 
 @hotwired/turbo/dist/turbo.es2017-esm.js:
