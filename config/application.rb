@@ -42,5 +42,7 @@ module HealthyHabit
     config.generators do |g|
       g.template_engine :slim
     end
+
+    config.exceptions_app = routes
   end
 end

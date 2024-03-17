@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  mount Avo::Engine, at: Avo.configuration.root_path
+  authenticate :user, ->(user) { user.has_role? :admin } do
+    mount Avo::Engine, at: Avo.configuration.root_path
+  end
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions',
@@ -22,4 +24,8 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :options
+
+  %w[401 404 422 500].each do |code|
+    get code, to: 'errors#show', code: code
+  end
 end

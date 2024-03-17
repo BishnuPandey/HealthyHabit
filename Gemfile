@@ -87,14 +87,14 @@ gem 'rolify', '~> 6.0'
 
 gem 'devise_invitable', '~> 2.0'
 
-gem 'pundit', '~> 2.3'
+# gem 'pundit', '~> 2.3'
 
 gem 'letter_opener', '~> 1.9'
 
 gem 'avo', '~> 3.4'
 
-gem "inherited_resources", "~> 1.14"
+gem 'inherited_resources', '~> 1.14'
 
-gem "responders", "~> 3.1"
+gem 'responders', '~> 3.1'
 
-gem "slim-rails", "~> 3.6"
+gem 'slim-rails', '~> 3.6'

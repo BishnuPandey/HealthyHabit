@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OpenaiService
   include HTTParty
   attr_reader :api_url, :options, :query
@@ -8,7 +10,7 @@ class OpenaiService
     @options = {
       headers: {
         'Content-Type' => 'application/json',
-        'Authorization' => "Bearer #{Rails.application.credentials.dig(:openai_api_key)}"
+        'Authorization' => "Bearer #{Rails.application.credentials[:openai_api_key]}"
       }
     }
   end

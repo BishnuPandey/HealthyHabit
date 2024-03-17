@@ -40,6 +40,17 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  # Mailtrap configuration
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    user_name: Rails.application.credentials.dig(:mailtrap_user_name),
+    password: '********dffa',
+    address: 'sandbox.smtp.mailtrap.io',
+    host: 'sandbox.smtp.mailtrap.io',
+    port: '2525',
+    authentication: :login
+  }
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 

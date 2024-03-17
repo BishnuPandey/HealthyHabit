@@ -1,9 +1,18 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
+  rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2]
+
+  after_create :assign_default_role
+
+  def assign_default_role
+    add_role(:newuser) if roles.blank?
+  end
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.id).first_or_create do |user|
