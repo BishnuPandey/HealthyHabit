@@ -48,13 +48,16 @@ group :development, :test do
 
   gem 'rubocop', '~> 1.60'
 
-  gem 'flay', '~> 2.13'
-
   gem 'factory_bot_rails', '~> 6.4'
+  gem 'flay', '~> 2.13'
+  gem 'rails-controller-testing'
+  gem 'rspec-rails', '~> 6.1'
+  gem 'rubocop-factory_bot', '~> 2.25'
+  gem 'rubocop-rails', '~> 2.23'
+  gem 'rubocop-rspec', '~> 2.27'
 end
 
 group :test do
-  gem 'rspec-rails', '~> 6.1'
 end
 
 group :development do
@@ -79,3 +82,19 @@ gem 'omniauth-rails_csrf_protection', '~> 1.0'
 gem 'httparty', '~> 0.21.0'
 gem 'openai', '~> 0.3.0'
 gem 'view_component', '~> 3.11'
+
+gem 'rolify', '~> 6.0'
+
+gem 'devise_invitable', '~> 2.0'
+
+# gem 'pundit', '~> 2.3'
+
+gem 'letter_opener', '~> 1.9'
+
+gem 'avo', '~> 3.4'
+
+gem 'inherited_resources', '~> 1.14'
+
+gem 'responders', '~> 3.1'
+
+gem 'slim-rails', '~> 3.6'

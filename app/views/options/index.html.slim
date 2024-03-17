@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Options
+
+#options
+  - @options.each do |option|
+    == render option
+    p
+      = link_to "Show this option", option
+
+= link_to "New option", new_option_path

@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
+  authenticate :user, ->(user) { user.has_role? :admin } do
+    mount Avo::Engine, at: Avo.configuration.root_path
+  end
   devise_for :users, controllers: {
-    registrations: "users/registrations",
-    sessions: "users/sessions",
-    omniauth_callbacks: "users/omniauth_callbacks"
+    registrations: 'users/registrations',
+    sessions: 'users/sessions',
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
-  root to: "static_pages#root"
+  root to: 'static_pages#root'
 
   # get "static_pages/root"
   # # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -14,9 +17,15 @@ Rails.application.routes.draw do
   # get "up" => "rails/health#show", as: :rails_health_check
 
   # Render dynamic PWA files from app/views/pwa/*
-  get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-  get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
+  get 'service-worker' => 'rails/pwa#service_worker', as: :pwa_service_worker
+  get 'manifest' => 'rails/pwa#manifest', as: :pwa_manifest
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  resources :options
+
+  %w[401 404 422 500].each do |code|
+    get code, to: 'errors#show', code: code
+  end
 end
