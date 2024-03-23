@@ -44,5 +44,10 @@ module HealthyHabit
     end
 
     config.exceptions_app = routes
+
+    # Redis
+    # config.cache_store = :redis_store, 'redis://localhost:6379', { expires_in: 90.minutes }
+    # Queues
+    config.active_job.queue_adapter = :sidekiq
   end
 end

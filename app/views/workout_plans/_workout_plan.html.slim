@@ -1,0 +1,6 @@
+div id="#{dom_id workout_plan}"
+  p
+    strong Content:
+    <pre>
+    =< JSON.pretty_generate(eval(workout_plan.content))
+    </pre>

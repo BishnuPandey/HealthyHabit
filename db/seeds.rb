@@ -7,3 +7,10 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+Option.destroy_all
+path = File.join(File.dirname(__FILE__), './seeds/options.json')
+options = JSON.parse(File.read(path))
+options['options'].each do |option|
+  Option.create!(option)
+end

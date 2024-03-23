@@ -1,0 +1,10 @@
+h1 Editing workout plan
+
+== render "form", workout_plan: @workout_plan
+
+br
+
+div
+  => link_to "Show this workout plan", @workout_plan
+  '|
+  =< link_to "Back to workout plans", workout_plans_path

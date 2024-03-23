@@ -4,7 +4,7 @@ module ApplicationHelper
   def navigation_items
     [
       { body: 'Dashboard', href: root_path },
-      { body: 'Habit', href: user_session_path },
+      { body: 'Start Workout Plan', href: workout_plans_path },
       { body: 'Hobby', href: new_user_registration_path }
     ]
   end

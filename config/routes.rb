@@ -1,4 +1,9 @@
+require 'sidekiq/web'
 Rails.application.routes.draw do
+  authenticate :user, ->(u) { u.has_role? :admin } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
   authenticate :user, ->(user) { user.has_role? :admin } do
     mount Avo::Engine, at: Avo.configuration.root_path
   end
@@ -24,6 +29,7 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :options
+  resources :workout_plans
 
   %w[401 404 422 500].each do |code|
     get code, to: 'errors#show', code: code
