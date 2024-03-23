@@ -1,0 +1,17 @@
+p style="color: green" = notice
+
+h1 Workout plans
+
+#workout_plans
+  table class="table-auto"
+    thead
+      tr
+        th Visitor Name
+        th
+    tbody
+      - @workout_plans.each do |workout_plan|
+        tr
+          td = workout_plan.user.email
+          td = link_to "Show workout plan", workout_plan
+
+= link_to "New workout plan", new_workout_plan_path

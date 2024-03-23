@@ -1,0 +1,20 @@
+= form_with(model: workout_plan, data: { turbo: "false" }, class: "max-w-sm mx-auto") do |form|
+  - if workout_plan.errors.any?
+    div style="color: red"
+      h2 = "#{pluralize(workout_plan.errors.count, "error")} prohibited this workout_plan from being saved:"
+      ul
+        - workout_plan.errors.each do |error|
+          li = error.full_message
+
+  div class="mb-5 bg-gray-500"
+    = form.label option.question, style: "display: block", class: "block mb-2 text-lg font-medium text-gray-900 dark:text-white"
+    = form.hidden_field :question, :value => option.question
+    /! form.text_field :content
+    - option.options.each do |optionvalue|
+      div class="flex items-center mb-4"
+        = form.radio_button :content, optionvalue, class: "w-4 h-4 border-gray-300"
+        = form.label optionvalue, class: "block ms-2 text-sm font-medium text-gray-900"
+   
+
+  div
+    = form.submit

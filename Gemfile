@@ -98,3 +98,13 @@ gem 'inherited_resources', '~> 1.14'
 gem 'responders', '~> 3.1'
 
 gem 'slim-rails', '~> 3.6'
+
+gem "active_model_serializers", "~> 0.10.14"
+
+gem "redis", "~> 5.1"
+
+gem "sidekiq", "~> 7.2"
+
+gem "redis-namespace", "~> 1.11"
+
+gem "redis-rails", "~> 5.0"

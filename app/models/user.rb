@@ -10,6 +10,8 @@ class User < ApplicationRecord
 
   after_create :assign_default_role
 
+  has_one :workout_plan
+
   def assign_default_role
     add_role(:newuser) if roles.blank?
   end

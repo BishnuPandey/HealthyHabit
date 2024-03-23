@@ -1,0 +1,24 @@
+{
+    "options": [
+      {
+        "question": "Select your Age",
+        "options": [
+          "18-25",
+          "26-35",
+          "36-45", 
+          "46+"
+        ],
+        "step": 1,
+        "form_name": "weight-loss"
+      },
+      {
+        "question": "What is your goal?",
+        "options": [
+          "Muscle Gain",
+          "Weight Loss"
+        ],
+        "step": 2,
+        "form_name": "weight-loss"
+      }
+    ]
+  }
