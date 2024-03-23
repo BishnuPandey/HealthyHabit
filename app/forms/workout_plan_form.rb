@@ -16,12 +16,9 @@ class WorkoutPlanForm
     return false if invalid?
 
     step, total_step = WorkoutPlanService.new(content, current_user).call
-   
-    if step && (step.to_i <= total_step.to_i)
-      return [step, total_step] 
-    else
-      return [step, total_step]
-    end
-   
+
+    return [step, total_step] if step && (step.to_i <= total_step.to_i)
+
+    [step, total_step]
   end
 end
