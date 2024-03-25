@@ -1,9 +1,9 @@
 = form_with(model: workout_plan, data: { turbo: "false" }, class: "max-w-sm mx-auto") do |form|
-  - if workout_plan.errors.any?
+  - if @workout_plan_form.errors.any?
     div style="color: red"
-      h2 = "#{pluralize(workout_plan.errors.count, "error")} prohibited this workout_plan from being saved:"
+      h2 = "#{pluralize(@workout_plan_form.errors.count, "error")} prohibited this workout_plan from being saved:"
       ul
-        - workout_plan.errors.each do |error|
+        - @workout_plan_form.errors.each do |error|
           li = error.full_message
 
   div class="mb-5 bg-gray-500"

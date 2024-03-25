@@ -8,7 +8,6 @@ class WorkoutPlanService
 
   def call
     return [get_step, get_step_total] if set_content
-
     result = [false, get_content]
     delete_cache
     result
