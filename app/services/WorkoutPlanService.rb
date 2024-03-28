@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class WorkoutPlanService
-  attr_reader :step, :content, :current_user
+  attr_reader :content, :current_user
 
   def initialize(content, user)
     @content = content
@@ -8,6 +10,7 @@ class WorkoutPlanService
 
   def call
     return [get_step, get_step_total] if set_content
+
     result = [false, get_content]
     delete_cache
     result

@@ -18,7 +18,7 @@ class WorkoutPlansController < ApplicationController
     @workout_plan_form = WorkoutPlanForm.new(workout_plan_params, current_user)
 
     res = @workout_plan_form.save
-    if !!res == res && res
+    if !res.nil? == res && res
       redirect_to workout_plans_path, notice: 'Your information submitted. System will create plan soon.' and return
     end
 
@@ -29,6 +29,7 @@ class WorkoutPlansController < ApplicationController
 
   def index
     @workout_plans = WorkoutPlan
+                     .where(user_id: current_user.id)
                      .includes(:user)
                      .order(id: :desc)
                      .all

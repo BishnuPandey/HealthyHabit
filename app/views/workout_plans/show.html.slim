@@ -1,10 +1,12 @@
-p style="color: green" = notice
+= turbo_frame_tag :workout_frame 
+  h1 Workout plan  
+  p style="color: green" = notice
 
-== render @workout_plan
+  == render @workout_plan
 
-div
-  => link_to "Edit this workout plan", edit_workout_plan_path(@workout_plan)
-  '|
-  =< link_to "Back to workout plans", workout_plans_path
+  div
+    => link_to "Edit this workout plan", edit_workout_plan_path(@workout_plan)
+    '|
+    =< link_to "Back to workout plans", workout_plans_path
 
-  = button_to "Destroy this workout plan", @workout_plan, method: :delete
+    = button_to "Destroy this workout plan", @workout_plan, method: :delete

@@ -1,10 +1,11 @@
-h1 Editing workout plan
+= turbo_frame_tag :workout_frame 
+  h1 Editing workout plan
 
-== render "form", workout_plan: @workout_plan
+  == render "form", workout_plan: @workout_plan
 
-br
+  br
 
-div
-  => link_to "Show this workout plan", @workout_plan
-  '|
-  =< link_to "Back to workout plans", workout_plans_path
+  div
+    => link_to "Show this workout plan", @workout_plan
+    '|
+    =< link_to "Back to workout plans", workout_plans_path

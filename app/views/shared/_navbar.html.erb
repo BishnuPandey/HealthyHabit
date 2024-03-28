@@ -33,7 +33,19 @@
         <div class="hidden sm:ml-6 sm:block">
           <div class="flex space-x-4">
             <%navigation_items.each do |item| %>
-              <%=link_to(item[:body], item[:href], class: navigation_class(item[:href]), 'aria-current': navigation_aria(item[:href]))%>
+            <%=link_to(
+                item[:body], 
+                item[:href],
+                data: item[:data],
+                class: navigation_class(item[:href])
+                )%>
+              <%#=link_to(
+                item[:body], 
+                item[:href],
+                data: item[:data],
+                class: navigation_class(item[:href]), 
+                'aria-current': navigation_aria(item[:href])
+                )%>
             <%end%>
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
           </div>
