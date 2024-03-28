@@ -45,12 +45,16 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     user_name: Rails.application.credentials.dig(:mailtrap_user_name),
-    password: '********dffa',
+    password: Rails.application.credentials.dig(:mailtrap_password),
     address: 'sandbox.smtp.mailtrap.io',
     host: 'sandbox.smtp.mailtrap.io',
     port: '2525',
     authentication: :login
   }
+  #sidekiq to handle backgroud job
+  config.active_job.queue_adapter = :sidekiq
+  # config.active_job.queue_name_prefix = "healthyhabit"
+  # config.active_job.queue_name_delimiter = "_"
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

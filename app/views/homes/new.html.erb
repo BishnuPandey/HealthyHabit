@@ -1,0 +1,31 @@
+<h1>Contact Us</h1>
+  <%= form_with model: @contact, url: homes_path, method: :post, local: true, data: { turbo: "false" } do |form| %>
+
+<% if @contact.errors.any? %>
+  <div>
+    <%= @contact.errors.first.full_message %>
+  </div>
+<% end %>
+  <div>
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name, class: "w-full rounded border border-gray-300 bg-inherit p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none text-neutral-800", placeholder: " ", required:"required" %>
+  </div>
+  <div>
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name, class: "w-full" %>
+  </div>
+  <div>
+    <%= form.label :email %>
+    <%= form.email_field :email, class: "w-full rounded border border-gray-300 bg-inherit p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none text-neutral-800", placeholder: " ", required:"required" %>
+  </div>
+  <div>
+    <%= form.label :message %>
+    <%= form.text_area :message, class: "w-full" %>
+  </div>
+  <div>
+  	 <%= recaptcha_tags %>
+  	<%= form.submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+

@@ -1,0 +1,19 @@
+p style="color: green" = notice
+
+h1 Workout plans
+
+#workout_plans class="rounded-t-xl overflow-hidden bg-gradient-to-r from-emerald-50 to-teal-100 p-10"
+  table class="table-auto"
+    thead
+      tr
+        th Visitor Name
+        th
+    tbody
+      - @workout_plans.each do |workout_plan|
+        tr
+          td = workout_plan.user.email
+          td = link_to "Show workout plan", workout_plan
+
+= link_to "New workout plan", new_workout_plan_path,
+                data: { turbo_frame: "workout_frame" }
+

@@ -108,3 +108,5 @@ gem "sidekiq", "~> 7.2"
 gem "redis-namespace", "~> 1.11"
 
 gem "redis-rails", "~> 5.0"
+
+gem "recaptcha", "~> 5.16"

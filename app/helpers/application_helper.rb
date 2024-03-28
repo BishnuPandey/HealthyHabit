@@ -5,7 +5,7 @@ module ApplicationHelper
     [
       { body: 'Dashboard', href: root_path },
       { body: 'Start Workout Plan', href: workout_plans_path },
-      { body: 'Hobby', href: new_user_registration_path }
+      { body: 'Contact Us', href: contact_us_path }
     ]
   end
 
