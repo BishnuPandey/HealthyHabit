@@ -22,7 +22,7 @@ class WorkoutPlansController < ApplicationController
       redirect_to workout_plans_path, notice: 'Your information submitted. System will create plan soon.' and return
     end
 
-    step = $redis.get("step_#{current_user.id}") || 1
+    step = HhApp.redis.get("step_#{current_user.id}") || 1
     option = Option.where(form_name: 'weight-loss', step: step).first
     render :new, locals: { option: option }
   end
