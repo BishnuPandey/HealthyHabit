@@ -24,4 +24,8 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
     mount Avo::Engine , at: Avo.configuration.root_path
   end
+
+  if Rails.env.development?
+    mount Lookbook::Engine, at: "/lookbook"
+  end
 end

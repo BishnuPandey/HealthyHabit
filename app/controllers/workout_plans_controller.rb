@@ -18,13 +18,15 @@ class WorkoutPlansController < ApplicationController
     @workout_plan_form = WorkoutPlanForm.new(workout_plan_params, current_user)
 
     res = @workout_plan_form.save
-    if !res.nil? == res && res
+    if (!res.nil? == res) && res
       redirect_to workout_plans_path, notice: 'Your information submitted. System will create plan soon.' and return
+    else
+      status = :unprocessable_entity
     end
 
     step = HhApp.redis.get("step_#{current_user.id}") || 1
     option = Option.where(form_name: 'weight-loss', step: step).first
-    render :new, locals: { option: option }
+    render :new, locals: { option: option }, status: status || :ok
   end
 
   def index

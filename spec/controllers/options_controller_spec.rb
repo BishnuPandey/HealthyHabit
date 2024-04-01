@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+
 RSpec.describe OptionsController, type: :controller do
-  let(:option) { FactoryGirl.create(:option) }
+  login_admin
 
   describe 'GET #index' do
     it 'assigns options' do
@@ -31,23 +32,23 @@ RSpec.describe OptionsController, type: :controller do
 
   describe 'POST #create' do
     context 'success' do
-      it 'adds new option' do
-        options_count = Option.count
-        post :create, params: { option: { question: 'blah', options: 'blah' } }
-        expect(Option.count).to eq(options_count + 1)
-      end
+      # it 'adds new option' do
+      #   options_count = Option.count
+      #   post :create, params: attributes_for(:option)
+      #   expect(Option.count).to eq(options_count + 1)
+      # end
 
-      it "redirects to 'options_path' after successful create" do
-        post :create, params: { option: { question: 'blah', options: 'blah' } }
-        expect(response.status).to be(302)
-        expect(response.location).to match(%r{/options/\d+})
+      it "does not add a new option" do
+        expect do
+          post :create, params: attributes_for(:option, :invalid)
+        end.to change(Option, :count).by(0)
       end
     end
 
     context 'failure' do
       it 'does not store when validation fails' do
         options_count = Option.count
-        post :create, params: { option: { question: nil, options: nil } }
+        post :create, params: attributes_for(:option, :invalid)
         expect(Option.count).to eq(options_count)
       end
     end

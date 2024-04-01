@@ -43,6 +43,8 @@ group :development, :test do
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem 'brakeman', require: false
 
+  gem 'capybara'
+  gem 'faker'
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem 'rubocop-rails-omakase', require: false
 
@@ -55,9 +57,15 @@ group :development, :test do
   gem 'rubocop-factory_bot', '~> 2.25'
   gem 'rubocop-rails', '~> 2.23'
   gem 'rubocop-rspec', '~> 2.27'
+  gem 'rubocop-capybara'
+
+  # gem 'authrocket', require: 'authrocket/rails', github: 'authrocket/authrocket-ruby'
 end
 
 group :test do
+  gem 'database_cleaner-active_record'
+  gem 'database_cleaner-redis'
+  gem "cucumber-rails", "~> 3.0", require: false
 end
 
 group :development do
@@ -72,6 +80,9 @@ group :development do
 
   # Highlight the fine-grained location where an error occurred [https://github.com/ruby/error_highlight]
   gem 'error_highlight', '>= 0.4.0', platforms: [:ruby]
+  gem "lookbook", ">= 2.2.2"
+  gem "listen"
+  # gem "actioncable"
 end
 
 gem 'devise', '~> 4.9'
@@ -112,3 +123,5 @@ gem "redis-rails", "~> 5.0"
 gem "recaptcha", "~> 5.16"
 
 gem "connection_pool", "~> 2.4"
+
+

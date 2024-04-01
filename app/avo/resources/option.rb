@@ -11,7 +11,7 @@ module Avo
       def fields
         field :id, as: :id
         field :question, as: :text
-        field :options, as: :code
+        field :options, as: :textarea
       end
     end
   end

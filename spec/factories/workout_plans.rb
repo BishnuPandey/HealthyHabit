@@ -2,6 +2,11 @@
 
 FactoryBot.define do
   factory :workout_plan do
-    content { '' }
+    
+    content {[{
+        'question' => 'Question 1',
+        'content' => '1'
+      }]}
+    user_id { nil }
   end
 end
